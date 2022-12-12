@@ -24,8 +24,8 @@ public class FlightsFinder {
 
 
         List<Fly> completedSortedFlights;
-        List<Fly> notCompletedFlights = flightsRepository.flightsFrom(from).stream().map(this::flyWith).collect(toList());
-        Optional<Fly> shortest;
+        List<Fly> notCompletedFlights = searchOneWayFlightsWithOrigin(from);
+        Optional<Fly> shortest = Optional.empty();
 
         do {
             notCompletedFlights = addASectionTo(notCompletedFlights);
@@ -34,15 +34,17 @@ public class FlightsFinder {
             completedSortedFlights = split.get(COMPLETED);
             notCompletedFlights = split.get(NOT_COMPLETED);
 
-            if (completedSortedFlights.isEmpty())
-                shortest = Optional.empty();
-            else
+            if (!completedSortedFlights.isEmpty())
                 shortest = Optional.of(cheapestOf(completedSortedFlights));
             notCompletedFlights = keepFastestNotCompleted(completedSortedFlights, notCompletedFlights);
 
         } while (!notCompletedFlights.isEmpty());
 
         return shortest;
+    }
+
+    private List<Fly> searchOneWayFlightsWithOrigin(String from) {
+        return flightsRepository.flightsFrom(from).stream().map(this::flyWith).collect(toList());
     }
 
     private List<OneWayFly> searchDirectFlights(String from, String to) {
