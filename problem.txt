@@ -1,0 +1,12 @@
+Travelling Salesman:
+
+We have a Redis in cloud where we store one way flights from city X to city Y with the following details:
+
+Flight route: from X to Y
+Price of the flight
+Time duration
+departure hour (local timezone)
+arrival hour (local timezone)
+
+
+Your task is to offer the best price route to the client from city A to city B with the shortest duration.
