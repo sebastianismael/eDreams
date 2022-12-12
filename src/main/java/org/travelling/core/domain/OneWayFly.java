@@ -6,7 +6,7 @@ public class OneWayFly implements Comparable<OneWayFly>{
 
     private String flyNumber;
     private FlightRoute flightRoute;
-    private double price;
+    private Double price;
     private Integer durationInMinutes;
     private LocalTime departureHour;
     private LocalTime arrivalHour;
@@ -30,7 +30,7 @@ public class OneWayFly implements Comparable<OneWayFly>{
         this.flightRoute = flightRoute;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -50,7 +50,7 @@ public class OneWayFly implements Comparable<OneWayFly>{
         return flightRoute;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 

@@ -5,16 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9410f53-dd8e-4cd0-b8d6-8fdfb7798d34" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/Fly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/FlightsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/FlightsFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/FlightsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/FlightsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travelling/core/infrastructure/FlightsRedisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/infrastructure/FlightsRedisRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/OneWayFly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/OneWayFly.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/travelling/core/domain/FlightsFinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/travelling/core/domain/FlightsFinderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsFinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsFinder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/infrastructure/FlightsRedisRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/travelling/core/infrastructure/FlightsRedisRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest$FlyBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest$FlyBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightRoute.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsFinder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/OneWayFly.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/infrastructure/FlightsRedisRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-org.travelling.core.domain.FlightsFinderTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/org.travelling.core.domain.FlightsFinderTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest$FlyBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +187,7 @@
       <workItem from="1670681337334" duration="12092000" />
       <workItem from="1670707692238" duration="63000" />
       <workItem from="1670841506057" duration="1646000" />
-      <workItem from="1670848597822" duration="1249000" />
+      <workItem from="1670848597822" duration="3002000" />
     </task>
     <servers />
   </component>

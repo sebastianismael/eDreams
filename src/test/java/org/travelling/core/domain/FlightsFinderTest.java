@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static java.util.Comparator.comparing;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -33,7 +32,7 @@ public class FlightsFinderTest {
 
         givenNotExistsFlightsFor(MIA, ROM);
 
-        Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
+        Optional<Fly> found = finder.findCheapestWithShortDuration(MIA, ROM);
 
         thenThereIsNotFlights(found);
     }
@@ -43,7 +42,7 @@ public class FlightsFinderTest {
         givenExistsDirectFlights(MIA, ROM,
                 aFly(MIA, ROM).withDuration(1000).withPrice(200.0));
 
-        Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
+        Optional<Fly> found = finder.findCheapestWithShortDuration(MIA, ROM);
 
         thenGetAFlyWithPriceAndDuration(200.0, 1000, found);
     }
@@ -56,7 +55,7 @@ public class FlightsFinderTest {
                     aFly(MIA, ROM).withDuration(1000).withPrice(110.0)
         );
 
-        Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
+        Optional<Fly> found = finder.findCheapestWithShortDuration(MIA, ROM);
 
         thenGetAFlyWithPriceAndDuration(110.0, 1000, found);
     }
@@ -72,14 +71,27 @@ public class FlightsFinderTest {
         givenExistsFlights(MIA,
                 aFly(MIA, MAD).withDuration(600).withPrice(190.0));
 
-        givenExistsFlights(MAD, 
+        givenExistsFlights(MAD,
                 aFly(MAD, ROM).withDuration(1200).withPrice(110.0));
 
-        Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
+        Optional<Fly> found = finder.findCheapestWithShortDuration(MIA, ROM);
 
         thenGetAFlyWithPriceAndDuration(110.0, 1000, found);
     }
 
+//    @Test
+//    public void returnCheaperNoDirectFlyIfThereAreNotDirects(){
+//        givenNotExistsFlightsFor(MIA, ROM);
+//        givenExistsFlights(MIA,
+//                aFly(MIA, MAD).withDuration(600).withPrice(190.0));
+//        givenExistsFlights(MAD,
+//                aFly(MAD, ROM).withDuration(200).withPrice(110.0),
+//                aFly(MAD, ROM).withDuration(300).withPrice(50.0));
+//
+//        Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
+//
+//        thenGetAFlyWithPriceAndDuration(300.0, 800, found);
+//    }
 
 
     private void givenNotExistsFlightsFor(String from, String to) {
@@ -104,13 +116,13 @@ public class FlightsFinderTest {
         return new FlyBuilder(new FlightRoute(from, to));
     }
 
-    private void thenGetAFlyWithPriceAndDuration(double price, int duration, Optional<OneWayFly> found) {
+    private void thenGetAFlyWithPriceAndDuration(double price, int duration, Optional<Fly> found) {
         assertThat(found).isPresent();
         assertThat(found.get().getPrice()).isEqualTo(price);
-        assertThat(found.get().getDurationInMinutes()).isEqualTo(duration);
+        assertThat(found.get().totalDuration()).isEqualTo(duration);
     }
 
-    private void thenThereIsNotFlights(Optional<OneWayFly> found) {
+    private void thenThereIsNotFlights(Optional<Fly> found) {
         assertThat(found).isNotPresent();
     }
 

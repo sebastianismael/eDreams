@@ -1,5 +1,0 @@
-org/travelling/core/domain/FlightsFinder.class
-org/travelling/core/domain/OneWayFly.class
-org/travelling/core/infrastructure/FlightsRedisRepository.class
-org/travelling/core/domain/FlightRoute.class
-org/travelling/core/domain/FlightsRepository.class
