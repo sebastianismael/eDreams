@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9410f53-dd8e-4cd0-b8d6-8fdfb7798d34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/problem.txt" beforeDir="false" afterPath="$PROJECT_DIR$/problem.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/FlightsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/FlightsFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/FlightsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/domain/FlightsRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/travelling/core/infrastructure/FlightsRedisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/infrastructure/FlightsRedisRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/travelling/core/domain/FlightsFinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/travelling/core/domain/FlightsFinderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsFinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsFinder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/travelling/core/domain/FlightsRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/infrastructure/FlightsRedisRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/travelling/core/infrastructure/FlightsRedisRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/org.travelling.core.domain.FlightsFinderTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/org.travelling.core.domain.FlightsFinderTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest$FlyBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest$FlyBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest.class" afterDir="false" />
     </list>
@@ -78,7 +78,7 @@
       <recent name="$PROJECT_DIR$/src/test/java" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in eDreams">
+  <component name="RunManager" selected="JUnit.FlightsFinderTest">
     <configuration name="All in eDreams" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="eDreams" />
       <option name="PACKAGE_NAME" value="" />
@@ -102,6 +102,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FlightsFinderTest.returnTheCheaperDirectFlyIfThereAreNoJustDirectFlights" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="eDreams" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.travelling.core.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.travelling.core.domain" />
+      <option name="MAIN_CLASS_NAME" value="org.travelling.core.domain.FlightsFinderTest" />
+      <option name="METHOD_NAME" value="returnTheCheaperDirectFlyIfThereAreNoJustDirectFlights" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FlightsFinderTest.returnTheCheaperFlyIfThereAreSeveralPrices" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="eDreams" />
       <extension name="coverage">
@@ -114,23 +130,6 @@
       <option name="MAIN_CLASS_NAME" value="org.travelling.core.domain.FlightsFinderTest" />
       <option name="METHOD_NAME" value="returnTheCheaperFlyIfThereAreSeveralPrices" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FlightsFinderTest.returnTheSingleFlyIfThereIsJustOnePrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="eDreams" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.travelling.core.domain.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.travelling.core.domain" />
-      <option name="MAIN_CLASS_NAME" value="org.travelling.core.domain.FlightsFinderTest" />
-      <option name="METHOD_NAME" value="returnTheSingleFlyIfThereIsJustOnePrice" />
-      <option name="TEST_OBJECT" value="method" />
-      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -153,18 +152,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.All in eDreams" />
+      <item itemvalue="JUnit.FlightsFinderTest.returnTheCheaperDirectFlyIfThereAreNoJustDirectFlights" />
       <item itemvalue="JUnit.FlightsFinderTest" />
       <item itemvalue="JUnit.FlightsFinderTest.returnTheCheaperFlyIfThereAreSeveralPrices" />
-      <item itemvalue="JUnit.FlightsFinderTest.returnTheSingleFlyIfThereIsJustOnePrice" />
       <item itemvalue="JUnit.java in eDreams" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FlightsFinderTest" />
+        <item itemvalue="JUnit.FlightsFinderTest.returnTheCheaperDirectFlyIfThereAreNoJustDirectFlights" />
         <item itemvalue="JUnit.All in eDreams" />
         <item itemvalue="JUnit.java in eDreams" />
-        <item itemvalue="JUnit.FlightsFinderTest" />
         <item itemvalue="JUnit.FlightsFinderTest.returnTheCheaperFlyIfThereAreSeveralPrices" />
-        <item itemvalue="JUnit.FlightsFinderTest.returnTheSingleFlyIfThereIsJustOnePrice" />
       </list>
     </recent_temporary>
   </component>
@@ -179,7 +178,7 @@
       <workItem from="1670681337334" duration="12092000" />
       <workItem from="1670707692238" duration="63000" />
       <workItem from="1670841506057" duration="1646000" />
-      <workItem from="1670848597822" duration="232000" />
+      <workItem from="1670848597822" duration="1249000" />
     </task>
     <servers />
   </component>

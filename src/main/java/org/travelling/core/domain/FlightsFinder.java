@@ -16,17 +16,16 @@ public class FlightsFinder {
     }
 
     public Optional<OneWayFly> findCheapestWithShortDuration(String from, String to) {
-        final List<OneWayFly> flights = flightsRepository.flightsOf(from, to);
+        final List<OneWayFly> directFlights = searchDirectFlights(from, to);
 
-        if(flights.isEmpty()) return Optional.empty();
+        // TODO to eb replaced when implement no direct flights behavior
+        if(directFlights.isEmpty()) return Optional.empty();
+        return Optional.of(directFlights.get(0));
+    }
 
-        SortedSet<OneWayFly> sortByPrice = new TreeSet<>(comparing(OneWayFly::getPrice));
-        final Integer quickest = flights.get(0).getDurationInMinutes();
-
-        for(OneWayFly each : flights){
-            if(each.getDurationInMinutes().equals(quickest))
-                sortByPrice.add(each);
-        }
-        return Optional.of(sortByPrice.first());
+    private List<OneWayFly> searchDirectFlights(String from, String to) {
+        final List<OneWayFly> directFlights = flightsRepository.flightsOf(from, to);
+        directFlights.sort(comparing(OneWayFly::getPrice));
+        return directFlights;
     }
 }

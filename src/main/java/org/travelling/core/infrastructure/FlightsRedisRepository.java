@@ -4,9 +4,10 @@ import org.travelling.core.domain.FlightsRepository;
 import org.travelling.core.domain.OneWayFly;
 import redis.clients.jedis.Jedis;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toCollection;
 
 public class FlightsRedisRepository implements FlightsRepository {
@@ -26,6 +27,11 @@ public class FlightsRedisRepository implements FlightsRepository {
                 .stream()
                 .map(flyNumber -> toModel(flyNumber, flights.get(flyNumber)))
                 .collect(toCollection(LinkedList::new));
+    }
+
+    @Override
+    public List<OneWayFly> flightsOf(String from) {
+        return null;
     }
 
     private OneWayFly toModel(String flyNumber, String data){

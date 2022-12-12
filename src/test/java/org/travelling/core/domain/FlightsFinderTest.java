@@ -14,12 +14,15 @@ public class FlightsFinderTest {
 
     private static final String MIA = "MIA";
     private static final String ROM = "ROM";
+    private static final String MAD = "MAD";
     private FlightsFinder finder;
     private FlightsRepository flightsRepository;
+    private List<OneWayFly> listOfDirectFlights;
     private List<OneWayFly> listOfFlights;
 
     @BeforeEach
     public void init(){
+        listOfDirectFlights = new LinkedList<>();
         listOfFlights = new LinkedList<>();
         flightsRepository = mock(FlightsRepository.class);
         finder = new FlightsFinder(flightsRepository);
@@ -37,7 +40,8 @@ public class FlightsFinderTest {
 
     @Test
     public void returnTheSingleDirectFlyIfThereIsJustOnePrice(){
-        givenExists(aFly(MIA, ROM).withDuration(1000).withPrice(200.0));
+        givenExistsDirectFlights(MIA, ROM,
+                aFly(MIA, ROM).withDuration(1000).withPrice(200.0));
 
         Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
 
@@ -46,25 +50,54 @@ public class FlightsFinderTest {
 
     @Test
     public void returnTheCheaperDirectFlyIfThereAreSeveralPrices(){
-        givenExists(aFly(MIA, ROM).withDuration(1000).withPrice(200.0),
+        givenExistsDirectFlights(MIA, ROM,
+                    aFly(MIA, ROM).withDuration(1000).withPrice(200.0),
                     aFly(MIA, ROM).withDuration(1000).withPrice(190.0),
-                    aFly(MIA, ROM).withDuration(1000).withPrice(110.0));
+                    aFly(MIA, ROM).withDuration(1000).withPrice(110.0)
+        );
 
         Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
 
         thenGetAFlyWithPriceAndDuration(110.0, 1000, found);
     }
 
+    @Test
+    public void returnTheCheaperDirectFlyIfThereAreNoJustDirectFlights(){
+        givenExistsDirectFlights(MIA, ROM,
+                    aFly(MIA, ROM).withDuration(1000).withPrice(200.0),
+                    aFly(MIA, ROM).withDuration(1000).withPrice(190.0),
+                    aFly(MIA, ROM).withDuration(1000).withPrice(110.0)
+        );
+
+        givenExistsFlights(MIA,
+                aFly(MIA, MAD).withDuration(600).withPrice(190.0));
+
+        givenExistsFlights(MAD, 
+                aFly(MAD, ROM).withDuration(1200).withPrice(110.0));
+
+        Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
+
+        thenGetAFlyWithPriceAndDuration(110.0, 1000, found);
+    }
+
+
+
     private void givenNotExistsFlightsFor(String from, String to) {
         when(flightsRepository.flightsOf(from, to)).thenReturn(new LinkedList<>());
     }
 
-    private void givenExists(FlyBuilder... flights){
+    private void givenExistsDirectFlights(String from, String to, FlyBuilder... flights){
+        for(FlyBuilder each: flights)
+            listOfDirectFlights.add(each.fly);
+
+        when(flightsRepository.flightsOf(from, to)).thenReturn(listOfDirectFlights);
+    }
+
+    private void givenExistsFlights(String from, FlyBuilder... flights) {
         for(FlyBuilder each: flights)
             listOfFlights.add(each.fly);
 
-        listOfFlights.sort(comparing(OneWayFly::getDurationInMinutes));
-        when(flightsRepository.flightsOf(MIA, ROM)).thenReturn(listOfFlights);
+        when(flightsRepository.flightsOf(from)).thenReturn(listOfDirectFlights);
     }
 
     private FlyBuilder aFly(String from, String to) {
