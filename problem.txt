@@ -10,3 +10,5 @@ arrival hour (local timezone)
 
 
 Your task is to offer the best price route to the client from city A to city B with the shortest duration.
+
+* Iam assuming same routes flights have same durations.

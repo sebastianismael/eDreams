@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9410f53-dd8e-4cd0-b8d6-8fdfb7798d34" name="Changes" comment="" />
+    <list default="true" id="d9410f53-dd8e-4cd0-b8d6-8fdfb7798d34" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/problem.txt" beforeDir="false" afterPath="$PROJECT_DIR$/problem.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/travelling/core/infrastructure/FlightsRedisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travelling/core/infrastructure/FlightsRedisRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/travelling/core/domain/FlightsFinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/travelling/core/domain/FlightsFinderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/travelling/core/infrastructure/FlightsRedisRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/travelling/core/infrastructure/FlightsRedisRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/org.travelling.core.domain.FlightsFinderTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/org.travelling.core.domain.FlightsFinderTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest$FlyBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest$FlyBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/travelling/core/domain/FlightsFinderTest.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,14 +32,17 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
@@ -53,6 +67,9 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -61,7 +78,15 @@
       <recent name="$PROJECT_DIR$/src/test/java" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in eDreams">
+  <component name="RunManager" selected="JUnit.All in eDreams">
+    <configuration name="All in eDreams" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="eDreams" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FlightsFinderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="eDreams" />
       <extension name="coverage">
@@ -110,37 +135,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RedisRepositoryShould.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="eDreams" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.travelling.core.infrastructure.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
+    <configuration name="java" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
       </extension>
-      <option name="PACKAGE_NAME" value="org.travelling.core.infrastructure" />
-      <option name="MAIN_CLASS_NAME" value="org.travelling.core.infrastructure.RedisRepositoryShould" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="java in eDreams" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="eDreams" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="directory" />
       <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.All in eDreams" />
+      <item itemvalue="JUnit.FlightsFinderTest" />
+      <item itemvalue="JUnit.FlightsFinderTest.returnTheCheaperFlyIfThereAreSeveralPrices" />
+      <item itemvalue="JUnit.FlightsFinderTest.returnTheSingleFlyIfThereIsJustOnePrice" />
+      <item itemvalue="JUnit.java in eDreams" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in eDreams" />
         <item itemvalue="JUnit.java in eDreams" />
-        <item itemvalue="JUnit.FlightsFinderTest.returnTheCheaperFlyIfThereAreSeveralPrices" />
         <item itemvalue="JUnit.FlightsFinderTest" />
+        <item itemvalue="JUnit.FlightsFinderTest.returnTheCheaperFlyIfThereAreSeveralPrices" />
         <item itemvalue="JUnit.FlightsFinderTest.returnTheSingleFlyIfThereIsJustOnePrice" />
-        <item itemvalue="JUnit.RedisRepositoryShould.test" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +178,8 @@
       <updated>1670681335581</updated>
       <workItem from="1670681337334" duration="12092000" />
       <workItem from="1670707692238" duration="63000" />
-      <workItem from="1670841506057" duration="1170000" />
+      <workItem from="1670841506057" duration="1646000" />
+      <workItem from="1670848597822" duration="232000" />
     </task>
     <servers />
   </component>

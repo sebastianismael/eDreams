@@ -25,7 +25,6 @@ public class FlightsRedisRepository implements FlightsRepository {
         return flights.keySet()
                 .stream()
                 .map(flyNumber -> toModel(flyNumber, flights.get(flyNumber)))
-                .sorted(comparing(OneWayFly::getDurationInMinutes))
                 .collect(toCollection(LinkedList::new));
     }
 

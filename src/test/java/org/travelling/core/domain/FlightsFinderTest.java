@@ -36,10 +36,8 @@ public class FlightsFinderTest {
     }
 
     @Test
-    public void returnTheSingleFlyIfThereIsJustOnePrice(){
-        givenExists(aFly(MIA, ROM).withDuration(1000).withPrice(200.0),
-                    aFly(MIA, ROM).withDuration(3000).withPrice(1200.0),
-                    aFly(MIA, ROM).withDuration(7000).withPrice(2000.0));
+    public void returnTheSingleDirectFlyIfThereIsJustOnePrice(){
+        givenExists(aFly(MIA, ROM).withDuration(1000).withPrice(200.0));
 
         Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
 
@@ -47,12 +45,10 @@ public class FlightsFinderTest {
     }
 
     @Test
-    public void returnTheCheaperFlyIfThereAreSeveralPrices(){
+    public void returnTheCheaperDirectFlyIfThereAreSeveralPrices(){
         givenExists(aFly(MIA, ROM).withDuration(1000).withPrice(200.0),
                     aFly(MIA, ROM).withDuration(1000).withPrice(190.0),
-                    aFly(MIA, ROM).withDuration(1000).withPrice(110.0),
-                    aFly(MIA, ROM).withDuration(3000).withPrice(1200.0),
-                    aFly(MIA, ROM).withDuration(7000).withPrice(2000.0));
+                    aFly(MIA, ROM).withDuration(1000).withPrice(110.0));
 
         Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
 
