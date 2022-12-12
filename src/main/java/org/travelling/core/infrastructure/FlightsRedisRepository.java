@@ -19,7 +19,7 @@ public class FlightsRedisRepository implements FlightsRepository {
     }
 
     @Override
-    public List<OneWayFly> flightsOf(String from, String to) {
+    public List<OneWayFly> flightsFrom(String from, String to) {
 
         final Map<String, String> flights = jedis.hgetAll(keyWith(from, to));
 
@@ -30,7 +30,7 @@ public class FlightsRedisRepository implements FlightsRepository {
     }
 
     @Override
-    public List<OneWayFly> flightsOf(String from) {
+    public List<OneWayFly> flightsFrom(String from) {
         return null;
     }
 

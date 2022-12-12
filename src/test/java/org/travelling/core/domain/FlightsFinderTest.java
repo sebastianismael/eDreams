@@ -17,12 +17,10 @@ public class FlightsFinderTest {
     private FlightsFinder finder;
     private FlightsRepository flightsRepository;
     private List<OneWayFly> listOfDirectFlights;
-    private List<OneWayFly> listOfFlights;
 
     @BeforeEach
     public void init(){
         listOfDirectFlights = new LinkedList<>();
-        listOfFlights = new LinkedList<>();
         flightsRepository = mock(FlightsRepository.class);
         finder = new FlightsFinder(flightsRepository);
     }
@@ -79,37 +77,38 @@ public class FlightsFinderTest {
         thenGetAFlyWithPriceAndDuration(110.0, 1000, found);
     }
 
-//    @Test
-//    public void returnCheaperNoDirectFlyIfThereAreNotDirects(){
-//        givenNotExistsFlightsFor(MIA, ROM);
-//        givenExistsFlights(MIA,
-//                aFly(MIA, MAD).withDuration(600).withPrice(190.0));
-//        givenExistsFlights(MAD,
-//                aFly(MAD, ROM).withDuration(200).withPrice(110.0),
-//                aFly(MAD, ROM).withDuration(300).withPrice(50.0));
-//
-//        Optional<OneWayFly> found = finder.findCheapestWithShortDuration(MIA, ROM);
-//
-//        thenGetAFlyWithPriceAndDuration(300.0, 800, found);
-//    }
+    @Test
+    public void returnCheaperNoDirectFlyIfThereAreNotDirects(){
+        givenNotExistsFlightsFor(MIA, ROM);
+        givenExistsFlights(MIA,
+                aFly(MIA, MAD).withDuration(600).withPrice(190.0));
+        givenExistsFlights(MAD,
+                aFly(MAD, ROM).withDuration(200).withPrice(110.0),
+                aFly(MAD, ROM).withDuration(300).withPrice(50.0));
+
+        Optional<Fly> found = finder.findCheapestWithShortDuration(MIA, ROM);
+
+        thenGetAFlyWithPriceAndDuration(300.0, 800, found);
+    }
 
 
     private void givenNotExistsFlightsFor(String from, String to) {
-        when(flightsRepository.flightsOf(from, to)).thenReturn(new LinkedList<>());
+        when(flightsRepository.flightsFrom(from, to)).thenReturn(new LinkedList<>());
     }
 
     private void givenExistsDirectFlights(String from, String to, FlyBuilder... flights){
         for(FlyBuilder each: flights)
             listOfDirectFlights.add(each.fly);
 
-        when(flightsRepository.flightsOf(from, to)).thenReturn(listOfDirectFlights);
+        when(flightsRepository.flightsFrom(from, to)).thenReturn(listOfDirectFlights);
     }
 
     private void givenExistsFlights(String from, FlyBuilder... flights) {
+        List<OneWayFly> listOfFlights = new LinkedList<>();
         for(FlyBuilder each: flights)
             listOfFlights.add(each.fly);
 
-        when(flightsRepository.flightsOf(from)).thenReturn(listOfDirectFlights);
+        when(flightsRepository.flightsFrom(from)).thenReturn(listOfFlights);
     }
 
     private FlyBuilder aFly(String from, String to) {

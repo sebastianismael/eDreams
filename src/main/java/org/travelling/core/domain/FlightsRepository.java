@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface FlightsRepository {
 
-    List<OneWayFly> flightsOf(String from, String to);
+    List<OneWayFly> flightsFrom(String from, String to);
 
-    List<OneWayFly> flightsOf(String from);
+    List<OneWayFly> flightsFrom(String from);
 }
