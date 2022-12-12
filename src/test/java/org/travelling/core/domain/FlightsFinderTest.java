@@ -91,6 +91,20 @@ public class FlightsFinderTest {
         thenGetAFlyWithPriceAndDuration(300.0, 800, found);
     }
 
+    @Test
+    public void returnCheaperIfThereAreNotDirectsWithTwoSameDuration(){
+        givenNotExistsFlightsFor(MIA, ROM);
+        givenExistsFlights(MIA,
+                aFly(MIA, MAD).withDuration(600).withPrice(190.0));
+        givenExistsFlights(MAD,
+                aFly(MAD, ROM).withDuration(300).withPrice(110.0),
+                aFly(MAD, ROM).withDuration(300).withPrice(50.0));
+
+        Optional<Fly> found = finder.findCheapestWithShortDuration(MIA, ROM);
+
+        thenGetAFlyWithPriceAndDuration(240.0, 900, found);
+    }
+
 
     private void givenNotExistsFlightsFor(String from, String to) {
         when(flightsRepository.flightsFrom(from, to)).thenReturn(new LinkedList<>());

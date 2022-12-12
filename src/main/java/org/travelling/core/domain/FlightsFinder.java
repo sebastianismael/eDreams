@@ -23,24 +23,22 @@ public class FlightsFinder {
             return Optional.of(aFlyWith(directFlights.get(0)));
 
 
-        List<Fly> completedFlight;
-        List<Fly> notCompletedFlights;
-
-        notCompletedFlights = flightsRepository.flightsFrom(from).stream().map(this::flyWith).collect(toList());
+        List<Fly> completedSortedFlights;
+        List<Fly> notCompletedFlights = flightsRepository.flightsFrom(from).stream().map(this::flyWith).collect(toList());
         Optional<Fly> shortest;
 
         do {
             notCompletedFlights = addASectionTo(notCompletedFlights);
 
             final Map<FlyCompletion, List<Fly>> split = splitCompleted(notCompletedFlights, to);
-            completedFlight = split.get(COMPLETED);
+            completedSortedFlights = split.get(COMPLETED);
             notCompletedFlights = split.get(NOT_COMPLETED);
 
-            if (completedFlight.isEmpty())
+            if (completedSortedFlights.isEmpty())
                 shortest = Optional.empty();
             else
-                shortest = Optional.of(completedFlight.get(0));
-            notCompletedFlights = keepFastestNotCompleted(completedFlight, notCompletedFlights);
+                shortest = Optional.of(cheapestOf(completedSortedFlights));
+            notCompletedFlights = keepFastestNotCompleted(completedSortedFlights, notCompletedFlights);
 
         } while (!notCompletedFlights.isEmpty());
 
@@ -53,6 +51,23 @@ public class FlightsFinder {
         return directFlights;
     }
 
+    private Fly cheapestOf(List<Fly> completedSorted) {
+        Fly cheapest = completedSorted.get(0);
+        for (Fly fly : completedSorted) {
+            if (haveSameDuration(cheapest, fly) && isFlyCheaperThan(cheapest, fly))
+                cheapest = fly;
+        }
+        return cheapest;
+    }
+
+    private static boolean isFlyCheaperThan(Fly cheapest, Fly fly) {
+        return fly.getPrice() < cheapest.getPrice();
+    }
+
+    private static boolean haveSameDuration(Fly cheapest, Fly fly) {
+        return fly.totalDuration().equals(cheapest.totalDuration());
+    }
+
     private List<Fly> keepFastestNotCompleted(List<Fly> completedFlight, List<Fly> incompleteFlights) {
         if (completedFlight.isEmpty()) return completedFlight;
         return incompleteFlights.stream()
@@ -60,9 +75,9 @@ public class FlightsFinder {
                 .collect(toList());
     }
 
-    private List<Fly> addASectionTo(List<Fly> flights){
+    private List<Fly> addASectionTo(List<Fly> flights) {
         List<Fly> result = new LinkedList<>();
-        for(Fly fly: flights){
+        for (Fly fly : flights) {
             result.addAll(composeSections(fly));
         }
         return result;
@@ -71,7 +86,7 @@ public class FlightsFinder {
     private List<Fly> composeSections(Fly flyToComplete) {
         List<Fly> result = new LinkedList<>();
         final List<OneWayFly> sectionsToAdd = flightsRepository.flightsFrom(flyToComplete.destination());
-        for(OneWayFly section: sectionsToAdd){
+        for (OneWayFly section : sectionsToAdd) {
             Fly fly = new Fly(flyToComplete.getSections());
             fly.addSection(section);
             result.add(fly);
