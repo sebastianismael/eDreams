@@ -22,25 +22,7 @@ public class FlightsFinder {
         if (!directFlights.isEmpty())
             return Optional.of(aFlyWith(directFlights.get(0)));
 
-
-        List<Fly> completedSortedFlights;
-        List<Fly> notCompletedFlights = searchOneWayFlightsWithOrigin(from);
-        Optional<Fly> shortest = Optional.empty();
-
-        do {
-            notCompletedFlights = addASectionTo(notCompletedFlights);
-
-            final Map<FlyCompletion, List<Fly>> split = splitCompleted(notCompletedFlights, to);
-            completedSortedFlights = split.get(COMPLETED);
-            notCompletedFlights = split.get(NOT_COMPLETED);
-
-            if (!completedSortedFlights.isEmpty())
-                shortest = Optional.of(cheapestOf(completedSortedFlights));
-            notCompletedFlights = keepFastestNotCompleted(completedSortedFlights, notCompletedFlights);
-
-        } while (!notCompletedFlights.isEmpty());
-
-        return shortest;
+        return searchCheapestNotDirectFlights(from, to);
     }
 
     private List<Fly> searchOneWayFlightsWithOrigin(String from) {
@@ -51,6 +33,31 @@ public class FlightsFinder {
         final List<OneWayFly> directFlights = flightsRepository.flightsFrom(from, to);
         directFlights.sort(comparing(OneWayFly::getPrice));
         return directFlights;
+    }
+
+    private Optional<Fly> searchCheapestNotDirectFlights(String from, String to) {
+        List<Fly> completedFlightsOrderByDuration = new LinkedList<>();
+        List<Fly> notCompletedFlights = searchOneWayFlightsWithOrigin(from);
+        Optional<Fly> cheapest = Optional.empty();
+
+        do {
+            notCompletedFlights = addASectionTo(notCompletedFlights);
+
+            final Flights flights = separateNewCompleted(notCompletedFlights, to);
+            completedFlightsOrderByDuration.addAll(flights.completed());
+            notCompletedFlights = flights.notCompleted();
+
+            completedFlightsOrderByDuration.sort(comparing(Fly::totalDuration));
+
+
+            if (!completedFlightsOrderByDuration.isEmpty())
+                cheapest = Optional.of(cheapestOf(completedFlightsOrderByDuration));
+
+            notCompletedFlights = keepFastestNotCompleted(completedFlightsOrderByDuration, notCompletedFlights);
+
+        } while (!notCompletedFlights.isEmpty());
+
+        return cheapest;
     }
 
     private Fly cheapestOf(List<Fly> completedSorted) {
@@ -96,7 +103,7 @@ public class FlightsFinder {
         return result;
     }
 
-    private Map<FlyCompletion, List<Fly>> splitCompleted(List<Fly> candidates, String finalDestination) {
+    private Flights separateNewCompleted(List<Fly> candidates, String finalDestination) {
         List<List<Fly>> splitFlights = new ArrayList<>(
                 candidates.stream()
                         .collect(Collectors.partitioningBy(
@@ -105,12 +112,8 @@ public class FlightsFinder {
         );
         Map<FlyCompletion, List<Fly>> results = new HashMap<>();
         results.put(NOT_COMPLETED, splitFlights.get(0));
-        results.put(COMPLETED, sortByDuration(splitFlights.get(1)));
-        return results;
-    }
-
-    private List<Fly> sortByDuration(List<Fly> toBeSorted) {
-        return toBeSorted.stream().sorted(comparing(Fly::totalDuration)).collect(toList());
+        results.put(COMPLETED, splitFlights.get(1));
+        return new Flights(results);
     }
 
     private Fly flyWith(OneWayFly section) {
@@ -127,4 +130,20 @@ public class FlightsFinder {
 
 enum FlyCompletion {
     COMPLETED, NOT_COMPLETED;
+}
+
+class Flights {
+    private Map<FlyCompletion, List<Fly>> flights;
+
+    public Flights(Map<FlyCompletion, List<Fly>> flights) {
+        this.flights = flights;
+    }
+
+    public List<Fly> completed() {
+        return flights.get(COMPLETED);
+    }
+
+    public List<Fly> notCompleted() {
+        return flights.get(NOT_COMPLETED);
+    }
 }
