@@ -38,8 +38,8 @@ public class FlightsFinder {
     private Optional<Fly> searchCheapestNotDirectFlights(String from, String to) {
         List<Fly> completedFlightsOrderByDuration = new LinkedList<>();
         List<Fly> notCompletedFlights = searchOneWayFlightsWithOrigin(from);
-        Optional<Fly> cheapest = Optional.empty();
 
+        Optional<Fly> cheapest = Optional.empty();
         do {
             notCompletedFlights = addASectionTo(notCompletedFlights);
 
@@ -86,9 +86,8 @@ public class FlightsFinder {
 
     private List<Fly> addASectionTo(List<Fly> flights) {
         List<Fly> result = new LinkedList<>();
-        for (Fly fly : flights) {
+        for (Fly fly : flights)
             result.addAll(composeSections(fly));
-        }
         return result;
     }
 
